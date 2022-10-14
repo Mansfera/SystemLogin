@@ -1,58 +1,82 @@
 package com.Mansfera.javadev;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.System.out;
 
 public class Main {
+    private static List<String> users = new ArrayList<>();
     public static void main(String[] args) {
-        out.println("Hello and welcome to JavaSystem!");
-        out.println("Please register to use system.");
+        boolean appIsRunning = true;
 
-        Scanner input = new Scanner(java.lang.System.in);
-        out.println("Please enter your userID: ");
-        int userID = input.nextInt();
+        while (appIsRunning) {
+            out.println("Hello and welcome to JavaSystem!");
+            Scanner scanner = new Scanner(System.in);
+            out.println("1 register;\n" +
+                    "2 find user;\n" +
+                    "3 remove user;\n" +
+                    "4 get all;\n" +
+                    "5 exit");
+            int choice = scanner.nextInt();
 
-        Scanner input1 = new Scanner(System.in);
-        out.println("Please enter your username: ");
-        String username = input1.nextLine();
+            switch (choice) {
+                case 1 -> register();
+                case 2 -> findUser();
+                case 3 -> removeUser();
+                case 4 -> getAll();
+                default -> appIsRunning = false;
+            }
+        }
 
-        Scanner input2 = new Scanner(System.in);
-        out.println("Please enter your password: ");
-        String password = input2.nextLine();
+    }
 
-        Scanner input3 = new Scanner(System.in);
-        out.println("Please enter your first name: ");
-        String firstName = input3.nextLine();
+    private static void register() {
+        Scanner scanner = new Scanner(System.in);
+        out.println("Enter your username: ");
+        String user_name = scanner.nextLine();
+        out.println("Enter your password: ");
+        String password = scanner.nextLine();
+        out.println("Enter your firstName: ");
+        String firstName = scanner.nextLine();
+        out.println("Enter your lastName: ");
+        String lastName = scanner.nextLine();
+        User user = new User(user_name, password, firstName, lastName);
+        users.add(user.username);
+        out.println("USER WAS CREATED > "+user.firstName+" "+user.lastName);
+    }
 
-        Scanner input4 = new Scanner(System.in);
-        out.println("Please enter your last name: ");
-        String lastname = input4.nextLine();
+    private static void findUser() {
+        Scanner scanner = new Scanner(System.in);
+        out.println("Enter username of user: ");
+        String username = scanner.nextLine();
+        if (users.contains(username)) {
+            out.println("USER EXIST");
+        } else {
+            out.println("USER DON'T EXIST");
+        }
 
-        try {
-            user user1 = new user(userID, username, password, firstName, lastname);
-            out.println("Successfully registered in JavaSystem!");
+    }
 
-            out.println("Okay now login time!");
-            Scanner login = new Scanner(System.in);
-            out.println("username:");
-            String user_name = login.nextLine();
-            if (Objects.equals(user_name, user1.username)) {
-                Scanner login1 = new Scanner(System.in);
-                out.println("password: ");
-                String user_pass = login1.nextLine();
-                if (user_pass == user1.password) {
-                    out.println("Login successful!");
-                    login();
-                } else {out.println("Wrong password");}
-            } else {out.println("No user found");}
-        } catch (Exception e) {
-            out.println("Something went wrong... please try something like");
-            out.println("1 user pass1234 Igor Smith");
+    private static void removeUser() {
+        Scanner scanner = new Scanner(System.in);
+        out.println("Enter username of user: ");
+        String username = scanner.nextLine();
+        if (users.contains(username) && users.remove(username)){
+            out.println("USER WAS REMOVED");
+        } else {
+            out.println("USER DON'T EXIST");
         }
     }
-    public static void login() {
 
+    private static void getAll() {
+        if (users.isEmpty()) {
+            out.println("No users found");
+        } else {
+            for (String user : users) {
+                out.println("> "+user);
+            }
+        }
     }
 }
