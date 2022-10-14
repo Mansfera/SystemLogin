@@ -8,6 +8,9 @@ import static java.lang.System.out;
 
 public class Main {
     private static List<String> users = new ArrayList<>();
+    private static List<String> passwords = new ArrayList<>();
+    private static List<String> firsts = new ArrayList<>();
+    private static List<String> lasts = new ArrayList<>();
     public static void main(String[] args) {
         boolean appIsRunning = true;
 
@@ -18,7 +21,8 @@ public class Main {
                     "2 find user;\n" +
                     "3 remove user;\n" +
                     "4 get all;\n" +
-                    "5 exit");
+                    "5 login\n"+
+                    "6 exit");
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -26,6 +30,7 @@ public class Main {
                 case 2 -> findUser();
                 case 3 -> removeUser();
                 case 4 -> getAll();
+                case 5 -> login();
                 default -> appIsRunning = false;
             }
         }
@@ -36,6 +41,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         out.println("Enter your username: ");
         String user_name = scanner.nextLine();
+        if (users.contains(user_name)) {
+            out.println("User already exists!");
+            register();
+        }
         out.println("Enter your password: ");
         String password = scanner.nextLine();
         out.println("Enter your firstName: ");
@@ -44,6 +53,9 @@ public class Main {
         String lastName = scanner.nextLine();
         User user = new User(user_name, password, firstName, lastName);
         users.add(user.username);
+        passwords.add(user.password);
+        firsts.add(user.firstName);
+        lasts.add(user.lastName);
         out.println("USER WAS CREATED > "+user.firstName+" "+user.lastName);
     }
 
@@ -78,5 +90,15 @@ public class Main {
                 out.println("> "+user);
             }
         }
+    }
+
+    private static void login() {
+        Scanner scanner = new Scanner(System.in);
+        out.println("Enter username of user: ");
+        String username = scanner.nextLine();
+    }
+
+    private static void getInfo(String username) {
+
     }
 }
