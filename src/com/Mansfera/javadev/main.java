@@ -1,5 +1,6 @@
 package com.Mansfera.javadev;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 import static java.lang.System.in;
@@ -31,18 +32,25 @@ public class main {
         String lastname = input4.nextLine();
 
         try {
-            user systemUser = new user(userID, username, password, firstName, lastname);
+            user user1 = new user(userID, username, password, firstName, lastname);
             out.println("Successfully registered in JavaSystem!");
-            login();
+
+            out.println("Okay now login time!");
+            Scanner login = new Scanner(System.in);
+            out.println("username:");
+            String user_name = login.nextLine();
+            if (Objects.equals(user_name, user1.username)) {
+                Scanner login1 = new Scanner(System.in);
+                out.println("password: ");
+                String user_pass = login1.nextLine();
+                if (user_pass == user1.password) {
+                    out.println("Login successful!");
+                } else {out.println("Wrong password");}
+            } else {out.println("No user found");}
         } catch (Exception e) {
             out.println("Something went wrong... please try something like");
             out.println("1 user pass1234 Igor Smith");
             register();
         }
-    }
-    public static void login() {
-        out.println("Okay now login time!");
-        Scanner login = new Scanner(System.in);
-
     }
 }
