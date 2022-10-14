@@ -3,11 +3,10 @@ package com.Mansfera.javadev;
 import java.util.Objects;
 import java.util.Scanner;
 
-import static java.lang.System.in;
 import static java.lang.System.out;
 
-public class main {
-    public static void register() {
+public class System {
+    public static void register(String[] args) {
         out.println("Hello and welcome to JavaSystem!");
         out.println("Please register to use system.");
 
