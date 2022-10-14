@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class System {
-    public static void register(String[] args) {
+public class Main {
+    public static void main(String[] args) {
         out.println("Hello and welcome to JavaSystem!");
         out.println("Please register to use system.");
 
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(java.lang.System.in);
         out.println("Please enter your userID: ");
         int userID = input.nextInt();
 
@@ -44,12 +44,15 @@ public class System {
                 String user_pass = login1.nextLine();
                 if (user_pass == user1.password) {
                     out.println("Login successful!");
+                    login();
                 } else {out.println("Wrong password");}
             } else {out.println("No user found");}
         } catch (Exception e) {
             out.println("Something went wrong... please try something like");
             out.println("1 user pass1234 Igor Smith");
-            register();
         }
+    }
+    public static void login() {
+
     }
 }
