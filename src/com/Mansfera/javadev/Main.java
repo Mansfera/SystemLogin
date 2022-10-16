@@ -80,7 +80,7 @@ public class Main {
         if (users.isEmpty()) {
             out.println("No users found");
         } else {
-            for (Object user : users) {
+            for (User user : users) {
                 out.println("> "+user);
             }
         }
