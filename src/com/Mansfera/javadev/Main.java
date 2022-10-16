@@ -7,10 +7,7 @@ import java.util.Scanner;
 import static java.lang.System.out;
 
 public class Main {
-    private static List<String> users = new ArrayList<>();
-    private static List<String> passwords = new ArrayList<>();
-    private static List<String> firsts = new ArrayList<>();
-    private static List<String> lasts = new ArrayList<>();
+    private static List<User> users = new ArrayList<>();
     public static void main(String[] args) {
         boolean appIsRunning = true;
 
@@ -52,10 +49,7 @@ public class Main {
         out.println("Enter your lastName: ");
         String lastName = scanner.nextLine();
         User user = new User(user_name, password, firstName, lastName);
-        users.add(user.username);
-        passwords.add(user.password);
-        firsts.add(user.firstName);
-        lasts.add(user.lastName);
+        users.add(user);
         out.println("USER WAS CREATED > "+user.firstName+" "+user.lastName);
     }
 
@@ -86,7 +80,7 @@ public class Main {
         if (users.isEmpty()) {
             out.println("No users found");
         } else {
-            for (String user : users) {
+            for (Object user : users) {
                 out.println("> "+user);
             }
         }
