@@ -27,7 +27,7 @@ public class Main {
                 case 2 -> findUser();
                 case 3 -> removeUser();
                 case 4 -> getAll();
-                case 5 -> login();
+                case 5 -> findUser4log();
                 default -> appIsRunning = false;
             }
         }
@@ -38,9 +38,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         out.println("Enter your username: ");
         String user_name = scanner.nextLine();
-        if (users.contains(user_name)) {
-            out.println("User already exists!");
-            register();
+        for (User user : users) {
+            String name = user.username;
+            if (name.equals(user_name)) {
+                out.println("User already exists!");
+                register();
+                return;
+            }
         }
         out.println("Enter your password: ");
         String password = scanner.nextLine();
@@ -81,18 +85,24 @@ public class Main {
             out.println("No users found");
         } else {
             for (User user : users) {
-                out.println("> "+user);
+                String name = user.username;
+                out.println("> "+name);
             }
         }
     }
 
-    private static void login() {
+    private static void findUser4log() {
         Scanner scanner = new Scanner(System.in);
         out.println("Enter username of user: ");
         String username = scanner.nextLine();
+        for (User user : users) {
+            String name = user.username;
+            if (username.equals(name)) {
+                login(username);
+            }
+        }
     }
-
-    private static void getInfo(String username) {
+    private static void login(String username) {
 
     }
 }
